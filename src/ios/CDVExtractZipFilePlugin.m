@@ -1,37 +1,43 @@
 //
-//  SSZipArchive.h
-//  SSZipArchive
-//
-//  Created by Sam Soffes on 7/21/10.
-//  Copyright (c) Sam Soffes 2010-2011. All rights reserved.
 //
 
 #import "CDVExtractZipFilePlugin.h"
 
-#define IMG @"img"
+#import "SSZipArchive.h"
+
+/*#define IMG @"img"
 #define SO @"so"
-#define AUTOR @"autor"
+#define AUTOR @"autor"*/
+
 
 @implementation CDVExtractZipFilePlugin
 
-- (BOOL)execute:(CDVInvokedUrlCommand*)command
+- (BOOL)unzip:(CDVInvokedUrlCommand*)command
 {
-   if ([command.className isEqualToString:@"unzip"])
-    {
-
-        NSString *fileName = [command.arguments objectAtIndex:0];
-        
+    bool result = true;
+    
+    @try {
+        NSString *fileName = [@"/Users/" stringByAppendingString:[command.arguments objectAtIndex:0]];
         NSLog(@"filename: %@",fileName);
+        
+        NSString *folder;
+        //folder = [NSString stringWithFormat:@"%@/%@/%@/%@",[fileName stringByDeletingLastPathComponent],SO,IMG,AUTOR] ;
+        folder =[fileName stringByDeletingLastPathComponent];
+        NSLog(@"folder: %@",folder);
+        
+        [SSZipArchive unzipFileAtPath:fileName toDestination:folder];
+        
+        
     }
-    else if ([command.methodName isEqualToString:@"unzip"])
-    {
-         NSString *fileName = [command.arguments objectAtIndex:0];
-        
-        NSLog(@"filename: %@",fileName);
+    @catch (NSException *exception) {
+        NSLog(@"%@",exception);
+        result = FALSE;
     }
     
+    
+    
 
-    return FALSE;
+    return result;
 }
 
 @end
