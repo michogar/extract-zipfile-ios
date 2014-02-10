@@ -36,7 +36,7 @@ version="0.0.2">
             <header-file src="src/ios/CDVExtractZipFilePlugin.h" />
             <source-file src="src/ios/CDVExtractZipFilePlugin.m" />
             
-            <header-file src="src/ios/SSZipArchive.h" />
+            <!--><header-file src="src/ios/SSZipArchive.h" />
             <source-file src="src/ios/SSZipArchive.m" />
             <header-file src="src/ios/crypt.h" />
             <header-file src="src/ios/ioapi.h" />
@@ -49,6 +49,7 @@ version="0.0.2">
             <source-file src="src/ios/zip.c" />
             
             <framework src="libz.dylib" />
+            <-->
         </platform>
 
 </plugin>
