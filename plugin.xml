@@ -35,8 +35,7 @@ version="0.0.2">
  
             <header-file src="src/ios/CDVExtractZipFilePlugin.h" />
             <source-file src="src/ios/CDVExtractZipFilePlugin.m" />
-            <!--><source-file src="src/ios/libZip.a" framework="true" compiler-flags="-lk"/><-->
-            <source-file src="src/ios/libZip.a" framework="true" compiler-flags="-lk"/>
+            <source-file src="src/ios/libZip.a" framework="true" compiler-flags="-lz"/>
             <header-file src="src/ios/SSZipArchive.h" />
             <header-file src="src/ios/crypt.h" />
             <header-file src="src/ios/ioapi.h" />
