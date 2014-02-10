@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+xmlns:android="http://schemas.android.com/apk/res/android"
+id="co.geomati.extractzipfile"
+version="0.0.2">
+
+	<engines>
+		<engine name="cordova" version=">=3.0.0" />
+	</engines>
+	<name>ExtractZipFilePlugin</name>
+	<description>Receives a ZIP file, extracts it and returns the path to the folder</description>
+	<author>info@geomati.co</author>
+	<keywords>ZIP</keywords>
+	<license>GPL v.2</license>
+	<asset src="www/ExtractZipFilePlugin.js" target="plugins/ExtractZipFilePlugin.js" />
+	<js-module src="www/ExtractZipFilePlugin.js" name="ExtractZipFilePlugin">
+		<clobbers target="ExtractZipFilePlugin" />
+	</js-module>
+	<platform name="android">
+		<source-file src="src/android/ExtractZipFilePlugin.java" target-dir="src/co/geomati/extractzipfile/" />
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="ExtractZipFilePlugin">
+				<param name="android-package" value="co.geomati.extractzipfile.ExtractZipFilePlugin"/>
+			</feature>
+		</config-file>
+	</platform>
+          <!-- ios -->
+        <platform name="ios">
+            <config-file target="config.xml" parent="/*">
+                     <feature name="ExtractZipFilePlugin">
+                             <param name="ios-package" value="CDVExtractZipFilePlugin"/>
+                             <!--><param name="onload" value="true"/><-->
+                     </feature>
+            </config-file>
+ 
+            <header-file src="src/ios/CDVExtractZipFilePlugin.h" />
+            <source-file src="src/ios/CDVExtractZipFilePlugin.m" />
+            
+            <header-file src="src/ios/libZip.h" />
+            <source-file src="src/ios/libZip.a" framework="true" />
+            
+            <framework src="libz.dylib" />
+        </platform>
+
+</plugin>
+
