@@ -6,40 +6,32 @@
 //  Copyright (c) Sam Soffes 2010-2011. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#include "minizip/unzip.h"
+#import "CDVExtractZipFilePlugin.h"
 
-@protocol SSZipArchiveDelegate;
+#define IMG @"img"
+#define SO @"so"
+#define AUTOR @"autor"
 
-@interface SSZipArchive : NSObject
+@implementation CDVExtractZipFilePlugin
 
-// Unzip
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error;
+- (BOOL)execute:(CDVInvokedUrlCommand*)command
+{
+   if ([command.className isEqualToString:@"unzip"])
+    {
 
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZipArchiveDelegate>)delegate;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error delegate:(id<SSZipArchiveDelegate>)delegate;
+        NSString *fileName = [command.arguments objectAtIndex:0];
+        
+        NSLog(@"filename: %@",fileName);
+    }
+    else if ([command.methodName isEqualToString:@"unzip"])
+    {
+         NSString *fileName = [command.arguments objectAtIndex:0];
+        
+        NSLog(@"filename: %@",fileName);
+    }
+    
 
-// Zip
-+ (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)filenames;
-
-- (id)initWithPath:(NSString *)path;
-- (BOOL)open;
-- (BOOL)writeFile:(NSString *)path;
-- (BOOL)writeData:(NSData *)data filename:(NSString *)filename;
-- (BOOL)close;
-
-@end
-
-
-@protocol SSZipArchiveDelegate <NSObject>
-
-@optional
-
-- (void)zipArchiveWillUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo;
-- (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath;
-
-- (void)zipArchiveWillUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath fileInfo:(unz_file_info)fileInfo;
-- (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath fileInfo:(unz_file_info)fileInfo;
+    return FALSE;
+}
 
 @end

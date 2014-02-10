@@ -7,39 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#include "minizip/unzip.h"
+#import <Cordova/CDVPlugin.h>
+//#import "libZip.h"
 
-@protocol SSZipArchiveDelegate;
-
-@interface SSZipArchive : NSObject
-
-// Unzip
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error;
-
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination delegate:(id<SSZipArchiveDelegate>)delegate;
-+ (BOOL)unzipFileAtPath:(NSString *)path toDestination:(NSString *)destination overwrite:(BOOL)overwrite password:(NSString *)password error:(NSError **)error delegate:(id<SSZipArchiveDelegate>)delegate;
-
-// Zip
-+ (BOOL)createZipFileAtPath:(NSString *)path withFilesAtPaths:(NSArray *)filenames;
-
-- (id)initWithPath:(NSString *)path;
-- (BOOL)open;
-- (BOOL)writeFile:(NSString *)path;
-- (BOOL)writeData:(NSData *)data filename:(NSString *)filename;
-- (BOOL)close;
-
-@end
-
-
-@protocol SSZipArchiveDelegate <NSObject>
-
-@optional
-
-- (void)zipArchiveWillUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo;
-- (void)zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath;
-
-- (void)zipArchiveWillUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath fileInfo:(unz_file_info)fileInfo;
-- (void)zipArchiveDidUnzipFileAtIndex:(NSInteger)fileIndex totalFiles:(NSInteger)totalFiles archivePath:(NSString *)archivePath fileInfo:(unz_file_info)fileInfo;
+@interface CDVExtractZipFilePlugin : CDVPlugin
+{
+    int j ;
+}
+- (BOOL)execute:(CDVInvokedUrlCommand*)command;
 
 @end
