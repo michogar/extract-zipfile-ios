@@ -34,7 +34,7 @@ version="0.0.2">
             </config-file>
  
             <header-file src="src/ios/CDVExtractZipFilePlugin.h" />
-            <!--><source-file src="src/ios/CDVExtractZipFilePlugin.m" /><-->
+            <source-file src="src/ios/CDVExtractZipFilePlugin.m" />
             <source-file src="src/ios/libZip.a" framework="true" compiler-flags="-lz"/>
             <header-file src="src/ios/SSZipArchive.h" />
             <header-file src="src/ios/crypt.h" />
@@ -43,7 +43,6 @@ version="0.0.2">
             <header-file src="src/ios/unzip.h" />
             <header-file src="src/ios/zip.h" />
 
-            
             <framework src="libz.dylib" />
 
         </platform>
