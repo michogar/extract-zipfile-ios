@@ -7,6 +7,6 @@
 @interface CDVExtractZipFilePlugin : CDVPlugin
 
 
-- (BOOL)unzip:(CDVInvokedUrlCommand*)command;
+- (void)unzip:(CDVInvokedUrlCommand*)command;
 
 @end

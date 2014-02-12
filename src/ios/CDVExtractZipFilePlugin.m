@@ -14,10 +14,12 @@
     CDVPluginResult*  pluginResult;
     
     @try {
-        NSString *fileName = [@"/Users/" stringByAppendingString:[command.arguments objectAtIndex:0]];
+        NSString *folder = [[self applicationDocumentsDirectory] stringByAppendingString:@"/co.geomati.mapaliterari"];
+        NSString *fileName = [folder stringByAppendingString:[NSString stringWithFormat:@"/%@",[[command.arguments objectAtIndex:0] lastPathComponent] ]];
+        //NSString *fileName = [@"/Users/" stringByAppendingString:[command.arguments objectAtIndex:0]];
         NSLog(@"filename: %@",fileName);
         
-        NSString *folder;
+        
         //folder = [NSString stringWithFormat:@"%@/%@/%@/%@",[fileName stringByDeletingLastPathComponent],SO,IMG,AUTOR] ;
 
         folder = [NSString stringWithFormat:@"%@/%@", [fileName stringByDeletingLastPathComponent], [[fileName lastPathComponent] stringByDeletingPathExtension]];
@@ -36,6 +38,12 @@
    
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
     
+}
+- (NSString *) applicationDocumentsDirectory
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+    return basePath;
 }
 
 @end
