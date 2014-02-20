@@ -14,7 +14,7 @@
     CDVPluginResult*  pluginResult;
     
     @try {
-        NSString *folder = [[self applicationDocumentsDirectory] stringByAppendingString:@"/co.geomati.mapaliterari"];
+        NSString *folder = [[self applicationDocumentsDirectory] stringByAppendingString:@"/Mapaliterari"];
         NSString *fileName = [folder stringByAppendingString:[NSString stringWithFormat:@"/%@",[[command.arguments objectAtIndex:0] lastPathComponent] ]];
         //NSString *fileName = [@"/Users/" stringByAppendingString:[command.arguments objectAtIndex:0]];
         NSLog(@"filename: %@",fileName);
